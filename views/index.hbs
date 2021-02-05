@@ -1,7 +1,16 @@
+<a href="./records/create">Create</a>
+
 <ul>
   {{#each records}}
-  <li>
-    {{this.name}}
-  </li>
+  <div>
+    {{this.category}}
+    <div style="display: inline;">
+      {{this.name}}
+    </div>
+    <div style="display: inline;">
+      <span> {{this.date}} </span>
+      <span>{{this.amount}}</span>
+    </div>
+  </div>
   {{/each}}
 </ul>

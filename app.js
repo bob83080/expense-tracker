@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const exphbs = require('express-handlebars')
-
+const bodyPraser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
 
@@ -19,13 +19,31 @@ db.once('open', () => {
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-
+app.use(bodyPraser.urlencoded({ extended: true }))
 //home page
 app.get('/', (req, res) => {
   Record.find()
     .lean()
     .then(records => res.render('index', { records: records }))
     .catch(error => console.error(error))
+})
+
+app.get('/records/create', (req, res) => {
+  return res.render('create')
+})
+
+app.post('/records', (req, res) => {
+  const records = req.body
+  return Record.create(records)
+    .then(() => res.redirect('/'))
+    .catch(error => console.error(error))
+
+  // const record = new Record({
+  //   name, category, date, amount
+  // })
+  // return record.save()
+  //   .then(() => res.redirect('/'))
+  //   .catch(error => console.error(error))
 })
 
 app.listen(3000, () => {
