@@ -1,14 +1,8 @@
-const mongoose = require('mongoose')
 const categories = require('../Category')
+const db = require('../../config/mongoose')
 
-mongoose.connect('mongodb://localhost/expense-list', { useNewUrlParser: true, useUnifiedTopology: true })
 
-const db = mongoose.connection
-db.on('error', () => {
-  console.log('mongodb error!')
-})
 db.once('open', () => {
-  console.log('mongodb connected!')
   categories.create(
     { name: '家居物業' },
     { name: '交通出行' },
