@@ -20,10 +20,12 @@ db.once('open', () => {
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyPraser.urlencoded({ extended: true }))
+
 //home page
 app.get('/', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: 'desc' })
     .then(records => res.render('index', { records: records }))
     .catch(error => console.error(error))
 })
@@ -71,7 +73,15 @@ app.post('/records/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//delete page
 
+app.post('/records/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 
 app.listen(3000, () => {
