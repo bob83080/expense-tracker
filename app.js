@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
+//new page
 app.get('/records/create', (req, res) => {
   return res.render('create')
 })
@@ -36,14 +37,17 @@ app.post('/records', (req, res) => {
   const records = req.body
   return Record.create(records)
     .then(() => res.redirect('/'))
-    .catch(error => console.error(error))
+    .catch(error => console.log(error))
+})
 
-  // const record = new Record({
-  //   name, category, date, amount
-  // })
-  // return record.save()
-  //   .then(() => res.redirect('/'))
-  //   .catch(error => console.error(error))
+
+//detail page
+app.get('/records/:id', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then(record => res.render('detail', { record }))
+    .catch(error => console.log(error))
 })
 
 app.listen(3000, () => {
