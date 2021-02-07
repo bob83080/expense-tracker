@@ -1,4 +1,4 @@
-<p>{{record.name}}</p>
+{{!-- <p>{{record.name}}</p>
 <p>{{record.category}}</p>
 <p>{{record.date}}</p>
 <p>{{record.amount}}</p>
@@ -6,4 +6,44 @@
 <a href="/">back</a>
 <form action="/records/{{record._id}}?_method=DELETE" method="POST" style="display: inline">
   <button type="submit">delete</button>
-</form>
+</form> --}}
+
+<div class="container">
+
+  <div class="row  justify-content-center">
+
+    <div class="form-row col-6 py-5 mt-3 justify-content-center " style=" margin:auto;background-color: plum;">
+      <h1 class="col-12 mb-5" style="text-align:center; font-weight:600">消費明細</h1>
+      <div class="form-group my-3" style=" margin:auto;">
+        <label class="col-4 " for="name" style="text-align:center;font-weight: 600;">消費名稱</label>
+        <p class="col-6" style="text-align:center; display: inline">{{record.name}}
+        </p>
+        <div class="form-group my-3">
+          <label class="col-4" for="category" style="text-align:center;font-weight: 600;">類別</label>
+          <p class="col-6" style="text-align:center; display: inline">{{record.category}}
+          </p>
+        </div>
+        <div class="form-group my-3">
+          <label class="col-4" for="date" style="text-align:center;font-weight: 600;">消費日期</label>
+          <p class="col-6" style="text-align:center; display: inline">{{record.date}}
+          </p>
+        </div>
+        <div class="form-group mb-5">
+          <label class="col-4" for="date" style="text-align:center;font-weight: 600;">消費金額</label>
+          <p class="col-6" style="text-align:center; display: inline">{{record.amount}}
+          </p>
+        </div>
+        <div class="col-12 py-1" style="text-align:center;">
+          <a href="/records/{{record._id}}/edit">
+            <button type="button" class="btn btn-info">修改</button>
+          </a>
+          <a href="/">
+            <button type="button" class="btn btn-warning ml-3">返回</button>
+          </a>
+          <form action="/records/{{record._id}}?_method=DELETE" method="POST" style="display: inline">
+            <button type="submit" class="btn btn-danger">delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
