@@ -1,17 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 //new page
 router.get('/create', (req, res) => {
   return res.render('create')
 })
 
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
   const records = req.body
-  return Record.create(records)
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+  Category.find({ name: records.category })
+    .lean()
+    .then(category => {
+      records.icon = category.icon
+      Record.create(records)
+      res.redirect('/')
+    })
+
+
+
+  // const records = req.body
+  // return Record.create(records)
+  //   .then(() => res.redirect('/'))
+  //   .catch(error => console.log(error))
 })
 
 
