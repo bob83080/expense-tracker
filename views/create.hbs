@@ -12,21 +12,23 @@
         <div class="form-group my-3">
           <label class="col-4" for="category" style="text-align:center;">類別</label>
           <select class="col-6" id="category" class="form-control" name="category" required>
-            <option>選擇類型</option>
-            <option>家居物業</option>
-            <option>交通出行</option>
-            <option>休閒娛樂</option>
-            <option>餐飲食品</option>
-            <option>其他</option>
+            <option hidden>選擇類型</option>
+            {{#each categories}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
           </select>
         </div>
         <div class="form-group my-3">
           <label class="col-4" for="date" style="text-align:center;">消費日期</label>
           <input class="col-6" type="date" placeholder="date" name="date" required>
         </div>
-        <div class="form-group mb-5">
+        <div class="form-group my-3">
           <label class="col-4" for="date" style="text-align:center;">消費金額</label>
           <input class="col-6" type="number" step="0.01" placeholder="amount" name="amount" required>
+        </div>
+        <div class="form-group mb-5" style=" margin:auto;">
+          <label class="col-4 " for="description" style="text-align:center;">註解</label>
+          <input class="col-6" type="text" placeholder="description" name="description" required>
         </div>
         <div class="col-12 py-1" style="text-align:center;">
           <button type="submit" class="btn btn-info">確認</button>

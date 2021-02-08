@@ -1,4 +1,4 @@
-<div class="row mt-3">
+{{!-- <div class="row mt-3">
   <div class="col-md-8">
     <form action="/" method="get">
       <select class="form-select" name="category" aria-label="select category" data-selected="{{searchedCategory}}"
@@ -10,34 +10,52 @@
       </select>
     </form>
   </div>
-</div>
+</div> --}}
 
 <div class="row mt-3">
-  <div class="row d-flex justify-content-center " style="text-align:center">
-    <div class="total-amount-title">
-      <h4>總金額</h4>
+
+  <div class="d-flex align-items-center justify-content-center" style="text-align:center;">
+    <div class="col-4 d-flex align-items-center justify-content-center">
+      <h4>總金額:</h4>
     </div>
-    <div class="total-amount m-4">
-      <h1 style="color: orange;">
+    <div class="col-6 total-amount m-4 d-flex align-items-center justify-content-start">
+      <h1 style="color: rgb(255, 94, 0);">
         ${{totalAmount}}
       </h1>
     </div>
+
   </div>
 </div>
 
 
 
-<div class="card" style="background-color: peachpuff;">
+<div class="card" style="background-color: peachpuff; border: 2px solid rgb(172, 165, 165);">
   <div class=" row flex-md-nowrap">
-    <div class="col-md-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">類別</div>
+    <div class="col-md-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">
+
+      <button class="btn btn-success dropdown-toggle" type="button" name="category" id="dropdownMenuButton"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-selected="{{searchedCategory}}"
+        id="categoryRecord" onchange="submit();">類別
+        {{#if currentSelected}} {{currentSelected}} {{/if}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/">所有類別</a>
+        <a class="dropdown-item" href="/?category=家居物業">家居物業</a>
+        <a class="dropdown-item" href="/?category=交通出行">交通出行</a>
+        <a class="dropdown-item" href="/?category=休閒娛樂">休閒娛樂</a>
+        <a class="dropdown-item" href="/?category=餐飲食品">餐飲食品</a>
+        <a class="dropdown-item" href="/?category=其他">其他</a>
+      </div>
+
+    </div>
     <div class="col-3 py-2 d-flex justify-content-evenly align-items-center" style="font-weight: 600;">
       <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">名稱
         {{#if currentSelected}} {{currentSelected}} {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/sort/name/asc">名稱: A-Z</a>
-        <a class="dropdown-item" href="/sort/name/desc">名稱: Z-A</a>
+        <a class="dropdown-item" href="/records/name/asc">名稱: A-Z</a>
+        <a class="dropdown-item" href="/records/name/desc">名稱: Z-A</a>
       </div>
     </div>
     <div class="col-3 py-2 d-flex justify-content-evenly align-items-center" style="font-weight: 600;">
@@ -46,8 +64,8 @@
         {{#if currentSelected}} {{currentSelected}} {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/sort/date/asc">日期：近</a>
-        <a class="dropdown-item" href="/sort/date/desc">日期：遠</a>
+        <a class="dropdown-item" href="/records/date/desc">日期：近</a>
+        <a class="dropdown-item" href="/records/date/asc">日期：遠</a>
       </div>
     </div>
     <div class="col-3 d-flex align-items-center justify-content-center" style="font-weight: 600;">
@@ -56,8 +74,8 @@
         {{#if currentSelected}} {{currentSelected}} {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/sort/amount/asc">金額: 小</a>
-        <a class="dropdown-item" href="/sort/amount/desc">金額: 大</a>
+        <a class="dropdown-item" href="/records/amount/asc">金額: 小</a>
+        <a class="dropdown-item" href="/records/amount/desc">金額: 大</a>
       </div>
     </div>
     <div class="col-2 d-flex align-items-center justify-content-start" style="font-weight: 600;">功能</div>
@@ -66,28 +84,30 @@
 
 
 {{#each records}}
-<a href="/records/{{this._id}}" style="text-decoration: none; color: black;  ">
-  <div class="card">
+<a href="/records/{{this._id}}" class="col-12 " style="text-decoration: none; color: black;">
+  <div class="card" style="{{{this.iconColor}}}">
     <div class=" row flex-md-nowrap">
 
 
       <div class="col-md-2 d-flex align-items-center justify-content-center">
         {{{this.iconHTML}}}
       </div>
-      <div class="col-3 py-2 d-flex justify-content-evenly align-items-center">
+      <div class="col-3 py-2 d-flex justify-content-evenly align-items-center"
+        style="font-size: larger; font-weight: 600;">
         {{this.name}}
       </div>
 
-      <div class="col-3 py-2 d-flex justify-content-evenly align-items-center">
+      <div class="col-3 py-2 d-flex justify-content-evenly align-items-center"
+        style="font-size: larger; font-weight: 600;">
         <span> {{this.date}} </span>
       </div>
 
-      <div class="col-3 d-flex align-items-center justify-content-center">
+      <div class="col-3 d-flex align-items-center justify-content-center" style="font-size: larger; font-weight: 600;">
         <span>${{this.amount}}</span>
       </div>
 
 
-      <div class="col-2">
+      <div class="col-1">
         <form action="/records/{{ this._id }}/edit" method="GET">
           <button type="submit" class="btn "><i class="fas fa-edit fa-lg"></i></button>
         </form>

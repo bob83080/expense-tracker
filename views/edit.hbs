@@ -1,11 +1,3 @@
-{{!-- <form action="/records/{{record._id}}?_method=PUT" method="POST">
-  <input type="text" placeholder="name" name="name" value="{{record.name}}">
-  <button type="submit">Save</button>
-  <a href="/">back</a>
-</form> --}}
-
-
-
 <div class="container">
 
   <div class="row  justify-content-center">
@@ -19,26 +11,28 @@
         </div>
         <div class="form-group my-3">
           <label class="col-4" for="category" style="text-align:center;">類別</label>
-          <select class="col-6" id="category" class="form-control" name="category" data-selected="{{record.category}}"
-            required>
-            <option>選擇類型</option>
-            <option>家居物業</option>
-            <option>交通出行</option>
-            <option>休閒娛樂</option>
-            <option>餐飲食品</option>
-            <option>其他</option>
+          <select class="col-6" id="category" class="form-control" name="category" aria-label="select category"
+            data-selected="{{record.category}}" required>
+            {{#each categories}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
           </select>
         </div>
         <div class="form-group my-3">
           <label class="col-4" for="date" style="text-align:center;">消費日期</label>
-          <input class="col-6" type="date" placeholder="date" name="date" value="{{record.date}}" required>
+          <input class="col-6" type="date" name="date" value="{{record.date}}" required>
         </div>
-        <div class="form-group mb-5">
-          <label class="col-4" for="date" style="text-align:center;">消費金額</label>
+        <div class="form-group my-3">
+          <label class="col-4" for="number" style="text-align:center;">消費金額</label>
           <input class="col-6" type="number" step="0.01" placeholder="amount" name="amount" value="{{record.amount}}"
             required>
         </div>
-        <div class="col-12 py-1" style="text-align:center;">
+        <div class="form-group mb-5" style=" margin:auto;">
+          <label class="col-4 " for="description" style="text-align:center;">註解</label>
+          <input class="col-6 " type="text" placeholder="description" name="description" {{#if
+            record.description}}value={{record.description}}{{else}}value="No Comment" {{/if}} required>
+        </div>
+        <div class="col-12 py-1 d-flex justify-content-evenly" style="text-align:center;">
           <button type="submit" class="btn btn-info">保存</button>
           <a href="/">
             <button type="button" class="btn btn-warning ml-3">取消</button>

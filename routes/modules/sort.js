@@ -24,24 +24,4 @@ router.get('/:type/:method', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// // search page
-// router.get('/:category', (req, res) => {
-//   const category = req.params.category
-//   // const methodObj = { house: '家居物業', transport: '交通出行', entertainment: '休閒娛樂', food: '餐飲食品', others: '其他' }
-
-//   return Record.find()
-//     .lean()
-//     .then(records => {
-//       const record = records.filter(record => record.category.toLowerCase().includes(category.toLowerCase()))
-//       let totalAmount = 0
-//       records.forEach(item => {
-//         totalAmount += item.amount
-//         item.iconHTML = generateIconHTML(item.category)
-//       })
-//       res.render('index', { record: record, totalAmount })
-//     })
-//     .catch(error => console.error(error))
-// })
-
-
 module.exports = router

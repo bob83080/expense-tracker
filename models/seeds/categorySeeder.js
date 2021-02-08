@@ -1,4 +1,4 @@
-const categories = require('../Category')
+const categories = require('../category')
 const db = require('../../config/mongoose')
 
 
@@ -10,5 +10,6 @@ db.once('open', () => {
     { name: '餐飲食品', },
     { name: '其他', }
   )
-  console.log('done')
+
+  console.log('category done')
 })
