@@ -13,6 +13,7 @@
           <label class="col-4" for="category" style="text-align:center;">類別</label>
           <select class="col-6" id="category" class="form-control" name="category" aria-label="select category"
             data-selected="{{record.category}}" required>
+            <option hidden>{{record.category}}</option>
             {{#each categories}}
             <option value="{{this.name}}">{{this.name}}</option>
             {{/each}}

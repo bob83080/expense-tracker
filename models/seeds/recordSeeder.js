@@ -5,7 +5,7 @@ const db = require('../../config/mongoose')
 db.once('open', () => {
   records.create(
     {
-      name: '鹿皮巾拖把',
+      name: '舒潔衛生紙',
       category: '家居物業',
       date: '2021-01-07',
       amount: 375,
@@ -19,11 +19,11 @@ db.once('open', () => {
       description: '水果'
     },
     {
-      name: '智能腦控車',
+      name: '深海潛水',
       category: '休閒娛樂',
       date: '2021-02-01',
       amount: 1590,
-      description: '租車'
+      description: '潛水課程'
     },
     {
       name: '95無鉛汽油',
