@@ -1,6 +1,7 @@
 # 記帳本
 此項目提供記帳資訊，如消費的：名稱、金額、種類、日期...等。
-以 Visual Studio Code, Node.js, Express, Handlebars, mongoDB, mongoose, heroku 開發。
+以 Visual Studio Code, Node.js, Express, Handlebars, mongoDB, mongoose, 
+heroku, passport, session, middleware, connect-flash, dotenv, bcryptjs 開發。
 
 ## 項目功能
 * 使用者可以瀏覽所有支出紀錄。
@@ -8,13 +9,14 @@
 * 使用者可以編輯支出紀錄
 * 使用者可以刪除支出紀錄
 * 點擊左上方"Expense Tracker"可回到首頁。
-* 可以選擇排序方式。
-* 可以只顯示類別的消費。
+* 可以只顯示類別或月份的消費。
+* 具有使用者身分驗證
+* 登出與登入功能
 
 ## 專案畫面
-
-![Home page](/public/expense-tracker-home.JPG)
-![Create page](/public/expense-tracker-create.JPG)
+![Login page](/public/expense-tracker-login.JPG)
+![Home page](/public/expense-tracker-home-new.JPG)
+![Create page](/public/expense-tracker-create-new.JPG)
 
 ## Installing - 專案安裝流程
 1.開啟終端機(Terminal)，Clone 此專案至本機電腦。
