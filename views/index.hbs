@@ -1,19 +1,4 @@
-{{!-- <div class="row mt-3">
-  <div class="col-md-8">
-    <form action="/" method="get">
-      <select class="form-select" name="category" aria-label="select category" data-selected="{{searchedCategory}}"
-        id="categoryRecord" onchange="submit();">
-        <option value="" selected>所有分類</option>
-        {{#each categories}}
-        <option value="{{this.name}}">{{this.name}}</option>
-        {{/each}}
-      </select>
-    </form>
-  </div>
-</div> --}}
-
 <div class="row mt-3">
-
   <div class="d-flex align-items-center justify-content-center" style="text-align:center;">
     <div class="col-4 d-flex align-items-center justify-content-center">
       <h4>總金額:</h4>
@@ -23,64 +8,47 @@
         ${{totalAmount}}
       </h1>
     </div>
-
   </div>
 </div>
 
 
+<div class="select-form" style="background-color: peachpuff; border: 2px solid rgb(172, 165, 165);">
+  <form action="/filter">
+    <div class=" row flex-md-nowrap">
+      <div class="col-md-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">
+        <div class="categoryBtn " style="margin-right:20px;">
+          <select name="category" id="category" class="btn btn-success" onchange="this.form.submit()"
+            style="cursor: pointer;">
+            <option style="color:black;font-weight:700;" selected>{{#if category}}{{category}}{{else}}全部類別{{/if}}
+            </option>
+            <option>全部類別</option>
+            <option>家居物業</option>
+            <option>交通出行</option>
+            <option>休閒娛樂</option>
+            <option>餐飲食品</option>
+            <option>其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">店家</div>
+      <div class="col-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">消費名目</div>
 
-<div class="card" style="background-color: peachpuff; border: 2px solid rgb(172, 165, 165);">
-  <div class=" row flex-md-nowrap">
-    <div class="col-md-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">
-
-      <button class="btn btn-success dropdown-toggle" type="button" name="category" id="dropdownMenuButton"
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-selected="{{searchedCategory}}"
-        id="categoryRecord" onchange="submit();">類別
-        {{#if currentSelected}} {{currentSelected}} {{/if}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/">所有類別</a>
-        <a class="dropdown-item" href="/?category=家居物業">家居物業</a>
-        <a class="dropdown-item" href="/?category=交通出行">交通出行</a>
-        <a class="dropdown-item" href="/?category=休閒娛樂">休閒娛樂</a>
-        <a class="dropdown-item" href="/?category=餐飲食品">餐飲食品</a>
-        <a class="dropdown-item" href="/?category=其他">其他</a>
+      <div class="monthBtn col-3 d-flex align-items-center justify-content-center">
+        <select name="month" id="month" class="btn btn-success" onchange="this.form.submit()" style="cursor: pointer;">
+          <option style="color:black;font-weight:700;" selected>{{#if month}}{{month}}{{else}}全部月份{{/if}}</option>
+          <option>全部月份</option>
+          {{#each months}}
+          <option>{{this}}</option>
+          {{/each}}
+        </select>
       </div>
 
+      <div class="col-2 d-flex align-items-center justify-content-center" style="font-weight: 600;">金額</div>
+      <div class="col-2 d-flex align-items-center justify-content-start" style="font-weight: 600;">功能</div>
     </div>
-    <div class="col-3 py-2 d-flex justify-content-evenly align-items-center" style="font-weight: 600;">
-      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">名稱
-        {{#if currentSelected}} {{currentSelected}} {{/if}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/records/name/asc">名稱: A-Z</a>
-        <a class="dropdown-item" href="/records/name/desc">名稱: Z-A</a>
-      </div>
-    </div>
-    <div class="col-3 py-2 d-flex justify-content-evenly align-items-center" style="font-weight: 600;">
-      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">日期
-        {{#if currentSelected}} {{currentSelected}} {{/if}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/records/date/desc">日期：近</a>
-        <a class="dropdown-item" href="/records/date/asc">日期：遠</a>
-      </div>
-    </div>
-    <div class="col-3 d-flex align-items-center justify-content-center" style="font-weight: 600;">
-      <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">金額
-        {{#if currentSelected}} {{currentSelected}} {{/if}}
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="/records/amount/asc">金額: 小</a>
-        <a class="dropdown-item" href="/records/amount/desc">金額: 大</a>
-      </div>
-    </div>
-    <div class="col-2 d-flex align-items-center justify-content-start" style="font-weight: 600;">功能</div>
-  </div>
+  </form>
 </div>
+
 
 
 {{#each records}}
@@ -88,13 +56,17 @@
   <div class="card" style="{{{this.iconColor}}}">
     <div class=" row flex-md-nowrap">
 
-
       <div class="col-md-2 d-flex align-items-center justify-content-center">
         {{{this.iconHTML}}}
       </div>
-      <div class="col-3 py-2 d-flex justify-content-evenly align-items-center"
+      <div class="col-2 py-2 d-flex justify-content-evenly align-items-center"
         style="font-size: larger; font-weight: 600;">
-        {{this.name}}
+        <span> {{this.merchant}} </span>
+      </div>
+
+      <div class="col-2 py-2 d-flex justify-content-evenly align-items-center"
+        style="font-size: larger; font-weight: 600;">
+        <span> {{this.name}} </span>
       </div>
 
       <div class="col-3 py-2 d-flex justify-content-evenly align-items-center"
@@ -102,23 +74,20 @@
         <span> {{this.date}} </span>
       </div>
 
-      <div class="col-3 d-flex align-items-center justify-content-center" style="font-size: larger; font-weight: 600;">
+      <div class="col-2 d-flex align-items-center justify-content-center" style="font-size: larger; font-weight: 600;">
         <span>${{this.amount}}</span>
       </div>
-
 
       <div class="col-1">
         <form action="/records/{{ this._id }}/edit" method="GET">
           <button type="submit" class="btn "><i class="fas fa-edit fa-lg"></i></button>
         </form>
+
         <form action="/records/{{this._id}}?_method=DELETE" method="POST">
           <button type="submit" class="btn" id="delete=btn"><i class="far fa-trash-alt fa-lg"></i></button>
         </form>
       </div>
-
-
     </div>
-
   </div>
 </a>
 {{/each}}

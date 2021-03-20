@@ -5,6 +5,10 @@
     <form action="/records" method="POST">
       <div class="form-row col-6 py-5 mt-3 justify-content-center " style=" margin:auto;background-color: plum;">
         <h1 class="col-12 mb-5" style="text-align:center;">新增消費</h1>
+        <div class="form-group mb-3" style=" margin:auto;">
+          <label class="col-4 " for="description" style="text-align:center;">消費店家</label>
+          <input class="col-6" type="text" placeholder="merchant" name="merchant" required>
+        </div>
         <div class="form-group my-3" style=" margin:auto;">
           <label class="col-4 " for="name" style="text-align:center;">消費名稱</label>
           <input class="col-6" type="text" placeholder="name" name="name" required>
@@ -26,6 +30,7 @@
           <label class="col-4" for="date" style="text-align:center;">消費金額</label>
           <input class="col-6" type="number" step="0.01" placeholder="amount" name="amount" required>
         </div>
+
         <div class="form-group mb-5" style=" margin:auto;">
           <label class="col-4 " for="description" style="text-align:center;">註解</label>
           <input class="col-6" type="text" placeholder="description" name="description" required>

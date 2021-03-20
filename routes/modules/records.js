@@ -3,8 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const dateFormat = require('../../dateFormat.js')
-const generateIconHTML = require('../../generateIconHTML.js')
-const iconColor = require('../../iconColor.js')
+
 //new page
 router.get('/create', (req, res) => {
 
@@ -22,8 +21,6 @@ router.get('/create', (req, res) => {
     })
     .catch(error => console.log(error))
 })
-//   return res.render('create')
-// })
 
 router.post('/', (req, res) => {
   const records = req.body
@@ -71,7 +68,9 @@ router.put('/:id', (req, res) => {
       record.category = req.body.category
       record.date = req.body.date
       record.amount = req.body.amount
+      record.merchant = req.body.merchant
       record.description = req.body.description
+
       return record.save()
     })
     .then(() => res.redirect(`/records/${id}`))
@@ -87,31 +86,6 @@ router.delete('/:id', (req, res) => {
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
-
-//sort
-router.get('/:type/:method', (req, res) => {
-  const type = req.params.type
-  const method = req.params.method
-  const typeObj = { name: '名稱', category: '類別', date: '日期', amount: '金額' }
-  const methodObj = { asc: 'A-Z', desc: 'Z-A' }
-  const currentSelected = `${typeObj[type]}：${methodObj[method]}`
-  Record.find()
-    .lean()
-    .sort({ [type]: [method] })
-    .then(records => {
-      let totalAmount = 0
-      records.forEach(item => {
-        item.date = dateFormat(item.date)
-        totalAmount += item.amount
-        item.iconHTML = generateIconHTML(item.category)
-        item.iconColor = iconColor(item.category)
-      })
-      totalAmount = totalAmount.toFixed(2)
-      res.render('index', { records: records, totalAmount })
-    })
-    .catch(error => console.error(error))
-})
-
 
 
 module.exports = router

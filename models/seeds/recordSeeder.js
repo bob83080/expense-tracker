@@ -9,28 +9,32 @@ db.once('open', () => {
       category: '家居物業',
       date: '2021-01-07',
       amount: 375,
-      description: '家用'
+      description: '家用',
+      merchant: '超商'
     },
     {
       name: '蕃茄',
       category: '餐飲食品',
       date: '2021-01-14',
       amount: 100,
-      description: '水果'
+      description: '水果',
+      merchant: '超商'
     },
     {
       name: '深海潛水',
       category: '休閒娛樂',
       date: '2021-02-01',
       amount: 1590,
-      description: '潛水課程'
+      description: '潛水課程',
+      merchant: '潛水教練'
     },
     {
       name: '95無鉛汽油',
       category: '交通出行',
       date: '2021-01-23',
       amount: 63,
-      description: '加油'
+      description: '加油',
+      merchant: '中國石油'
     }
   )
   console.log('record done')
