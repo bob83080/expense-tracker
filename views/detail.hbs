@@ -40,9 +40,12 @@
           <a href="/">
             <button type="button" class="btn btn-warning ml-3">返回</button>
           </a>
-          <form action="/records/{{record._id}}?_method=DELETE" method="POST" style="display: inline">
-            <button type="submit" class="btn btn-danger">delete</button>
-          </form>
+          <a>
+            <form action="/records/{{record._id}}?_method=DELETE" method="POST" style="display: inline">
+              <button type="submit" class="btn btn-danger">delete</button>
+            </form>
+          </a>
+
 
         </div>
       </div>

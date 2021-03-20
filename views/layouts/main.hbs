@@ -16,9 +16,26 @@
   <header>
     <nav class="navbar navbar-dark bg-primary justify-content-between">
       <a class="navbar-brand mx-3" href="/">
-        <h2>Expense Tracker</h2>
+        <h2 style="color: rgb(255, 255, 255)">{{#if isAuthenticated}}{{ user.name}}'s {{/if}}Expense Tracker</h2>
       </a>
-      <a class="btn btn-warning mx-3" href="/records/create">Create</a>
+      {{#if isAuthenticated}}
+      <div>
+        <form action="/users/logout" method="GET">
+          <button class="btn btn-danger" type="submit">Logout
+          </button>
+        </form>
+      </div>
+      {{else}}
+      <div>
+        <form action="/users/logout" method="GET">
+          <button class="btn btn-success" type="submit">Login
+          </button>
+        </form>
+      </div>
+
+      {{/if}}
+
+      {{!-- <a class="btn btn-warning mx-3" href="/records/create">Create</a> --}}
     </nav>
   </header>
 
